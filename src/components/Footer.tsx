@@ -1,6 +1,6 @@
 import React from 'react';
 import { Logo } from './Logo';
-import { Calculator, Home, Mail, Shield, FileText, Heart } from 'lucide-react';
+import { Calculator, Home, Mail, Shield, FileText, Heart, Youtube } from 'lucide-react';
 
 export const Footer: React.FC = () => {
  const currentYear = new Date().getFullYear();
@@ -49,11 +49,15 @@ export const Footer: React.FC = () => {
  { href: "/", label: "Calculadoras", icon: Calculator },
  { href: "/blog", label: "Blog", icon: FileText },
  { href: "/como-funciona", label: "Como Funciona", icon: Shield },
- { href: "/sobre", label: "Sobre", icon: Heart }
- ].map(({ href, label, icon: Icon }) => (
+ { href: "/sobre", label: "Sobre", icon: Heart },
+ { href: "https://www.youtube.com/@quantovai", label: "Canal YouTube", icon: Youtube, external: true }
+ ].map(({ href, label, icon: Icon, external }) => (
  <a key={href} href={href}
- className="flex items-center gap-3 text-neutral-300 hover:text-brand-200
- transition-all duration-300 group py-1">
+ target={external ? "_blank" : undefined}
+ rel={external ? "noopener noreferrer" : undefined}
+ className={`flex items-center gap-3 transition-all duration-300 group py-1 ${
+ external ? 'text-red-300 hover:text-red-200' : 'text-neutral-300 hover:text-brand-200'
+ }`}>
  <Icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
  <span className="group-hover:translate-x-1 transition-transform duration-300">{label}</span>
  </a>

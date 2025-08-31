@@ -26,6 +26,9 @@ export const AboutPage: React.FC = () => {
  <p>
  O <strong>quantovai.com.br</strong> nasceu para resolver esse problema. Criamos calculadoras online, gratuitas e fáceis de usar, que fornecem estimativas precisas e confiáveis. Tudo com transparência total sobre as fórmulas e suposições utilizadas.
  </p>
+ <p>
+ O <strong>QuantoVai.com.br é um ativo digital da Fator K Network</strong>, uma rede especializada em desenvolvimento de soluções digitais inovadoras para diversos setores, sempre com foco na qualidade, usabilidade e valor agregado para os usuários.
+ </p>
  </div>
  </Card>
 

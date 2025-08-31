@@ -4,8 +4,8 @@ import { Home } from './pages/Home';
 import { CalculatorPage } from './pages/Calculator';
 import { AboutPage } from './pages/About';
 import { HowItWorksPage } from './pages/HowItWorks';
-import { BlogPage } from './pages/BlogPage';
-import { BlogPostPage } from './pages/BlogPostPage';
+import { CalculatorsPage } from './pages/CalculatorsPage';
+import { SearchResultsPage } from './pages/SearchResults';
 import { NotFoundPage } from './pages/NotFound';
 
 function App() {
@@ -14,13 +14,22 @@ function App() {
 
  const renderPage = () => {
  const path = window.location.pathname;
+ const urlParams = new URLSearchParams(window.location.search);
 
  if (path === '/') {
  return <Home />;
  }
+ if (path.startsWith('/calculadora/')) {
+ const id = path.split('/')[2];
+ return <CalculatorPage calculatorId={id} />;
+ }
  if (path.startsWith('/calculator/')) {
  const id = path.split('/')[2];
  return <CalculatorPage calculatorId={id} />;
+ }
+ if (path === '/busca' || path === '/search') {
+ const query = urlParams.get('q') || '';
+ return <SearchResultsPage query={query} />;
  }
  if (path === '/sobre') {
  return <AboutPage />;
@@ -28,16 +37,9 @@ function App() {
  if (path === '/como-funciona') {
  return <HowItWorksPage />;
  }
- if (path === '/blog') {
- return <BlogPage />;
- }
- if (path.startsWith('/blog/')) {
- const slug = path.split('/')[2];
- return <BlogPostPage postSlug={slug} />;
- }
  // A route for all calculators page
  if (path === '/calculadoras') {
- return <Home />;
+ return <CalculatorsPage />;
  }
  return <NotFoundPage />;
  };

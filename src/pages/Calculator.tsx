@@ -165,7 +165,7 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ calculatorId }) 
  <div className="lg:col-span-3 space-y-4 md:space-y-6">
  <Card>
  <CardHeader><CardTitle>Dados do Projeto</CardTitle></CardHeader>
- <CardContent className="space-y-4">
+ <CardContent className="space-y-6">
  {config.fields.map(renderField)}
  {config.advancedFields && (
  <div className="pt-6 border-t border-neutral-200 ">
@@ -190,7 +190,7 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ calculatorId }) 
  <AnimatePresence>
  {showAdvanced && (
  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
- <div className="space-y-4 pt-4">{config.advancedFields.map(renderField)}</div>
+ <div className="space-y-6 pt-6">{config.advancedFields.map(renderField)}</div>
  </motion.div>
  )}
  </AnimatePresence>

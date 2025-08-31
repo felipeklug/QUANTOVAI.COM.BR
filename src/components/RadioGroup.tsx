@@ -14,8 +14,8 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({ label, value, onChange, 
  const { getGradientBackground } = useGradientBorder();
 
  return (
- <fieldset className={cn('space-y-2', className)}>
- <legend className="block text-text font-medium text-body">{label}</legend>
+ <fieldset className={cn('space-y-4 mb-6', className)}>
+ <legend className="block text-text font-medium text-body mb-3">{label}</legend>
  <div className="flex flex-wrap gap-3">
  {options.map((option) => (
  <div key={option.value}>
@@ -31,10 +31,10 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({ label, value, onChange, 
  <label
  htmlFor={`${label}-${option.value}`}
  className={cn(
- 'px-4 py-2 rounded-lg text-caption font-medium transition-all duration-200 cursor-pointer border-2',
+ 'inline-block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer border-2 min-h-[44px] flex items-center',
  value === option.value
- ? 'bg-brand-500 text-white border-brand-500'
- : 'bg-surface text-text border-transparent hover:border-brand-500'
+ ? 'bg-brand-500 text-white border-brand-500 shadow-md'
+ : 'bg-surface text-text border-transparent hover:border-brand-500 hover:shadow-sm'
  )}
  style={value !== option.value ? getGradientBackground() : {}}
  >

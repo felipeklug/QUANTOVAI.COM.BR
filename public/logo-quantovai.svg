@@ -1,0 +1,52 @@
+<svg width="260" height="70" viewBox="0 0 260 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Optimized House with heart logo - better proportions and spacing -->
+  <g transform="translate(15, 8)">
+    <!-- House base -->
+    <path d="M15 54 L15 32 L35 12 L65 12 L85 32 L85 54 Z"
+          fill="#C5D49A"
+          stroke="#7C8B5A"
+          stroke-width="2.5"
+          stroke-linejoin="round"/>
+
+    <!-- House roof -->
+    <path d="M8 32 L35 5 L65 5 L92 32 L82 32 L50 10 L18 32 Z"
+          fill="#7C8B5A"/>
+
+    <!-- Heart icon - repositioned higher and more centered -->
+    <g transform="translate(50, 18)">
+      <path d="M8 5 C8 3, 6 1, 4 1 C2 1, 0 3, 0 5 C0 3, -2 1, -4 1 C-6 1, -8 3, -8 5 C-8 10, 0 16, 0 16 C0 16, 8 10, 8 5 Z"
+            fill="#10B981"
+            stroke="#059669"
+            stroke-width="0.5"/>
+    </g>
+
+    <!-- Window details -->
+    <rect x="25" y="38" width="6" height="6" rx="1" fill="white" opacity="0.95"/>
+    <rect x="69" y="38" width="6" height="6" rx="1" fill="white" opacity="0.95"/>
+
+    <!-- Door - moved down to give more space from heart -->
+    <rect x="47" y="44" width="6" height="10" rx="1" fill="white" opacity="0.95"/>
+    <circle cx="51" cy="49" r="0.6" fill="#7C8B5A"/>
+
+    <!-- Decorative base -->
+    <rect x="12" y="30" width="76" height="1.5" fill="#7C8B5A" opacity="0.8"/>
+  </g>
+
+  <!-- Brand text - optimized sizing and positioning -->
+  <text x="120" y="28"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="22"
+        font-weight="800"
+        letter-spacing="-0.02em"
+        fill="#1F2937">
+    QUANTO
+  </text>
+  <text x="120" y="50"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="22"
+        font-weight="800"
+        letter-spacing="-0.02em"
+        fill="#10B981">
+    VAI
+  </text>
+</svg>

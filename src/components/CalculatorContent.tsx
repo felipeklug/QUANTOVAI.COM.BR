@@ -318,54 +318,105 @@ export const CalculatorContent: React.FC<CalculatorContentProps> = ({ calculator
  <div className="space-y-8">
  <section>
  <h2 className="text-2xl font-bold text-neutral-900 mb-4">
- Como Calcular Rejunte Corretamente
+ Como Calcular Rejunte com Precisão Técnica (NBR 14992)
  </h2>
 
- {/* SVG Ilustrativo */}
- <div className="bg-brand-50 rounded-2xl p-6 mb-6">
- <svg viewBox="0 0 400 200" className="w-full h-32 mx-auto">
+ {/* SVG Ilustrativo Melhorado */}
+ <div className="bg-gray-50 rounded-2xl p-8 mb-8">
+ <svg viewBox="0 0 600 300" className="w-full h-64 mx-auto">
  <defs>
- <pattern id="groutTilePattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
- <rect width="38" height="38" fill="currentColor" className="text-brand-500" opacity="0.8" />
- <rect width="38" height="38" fill="none" stroke="currentColor" className="text-neutral-400" strokeWidth="2" />
+ <pattern id="groutTilePattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+ <rect width="58" height="58" fill="#e5e7eb" stroke="#6b7280" strokeWidth="2" />
  </pattern>
+ <marker id="arrowhead-grout" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+ <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" className="text-neutral-600" />
+ </marker>
  </defs>
- <rect x="50" y="30" width="300" height="140" fill="url(#groutTilePattern)" />
- <g stroke="currentColor" strokeWidth="4" className="text-neutral-600">
- <line x1="130" y1="30" x2="130" y2="170" />
- <line x1="210" y1="30" x2="210" y2="170" />
- <line x1="290" y1="30" x2="290" y2="170" />
- <line x1="50" y1="70" x2="350" y2="70" />
- <line x1="50" y1="110" x2="350" y2="110" />
- <line x1="50" y1="150" x2="350" y2="150" />
+
+ {/* Área de azulejos */}
+ <rect x="100" y="100" width="400" height="120" fill="url(#groutTilePattern)" />
+
+ {/* Destaque das juntas */}
+ <g stroke="#dc2626" strokeWidth="3" fill="#dc2626" opacity="0.7">
+ <line x1="160" y1="100" x2="160" y2="220" />
+ <line x1="220" y1="100" x2="220" y2="220" />
+ <line x1="280" y1="100" x2="280" y2="220" />
+ <line x1="340" y1="100" x2="340" y2="220" />
+ <line x1="400" y1="100" x2="400" y2="220" />
+ <line x1="460" y1="100" x2="460" y2="220" />
+
+ <line x1="100" y1="160" x2="500" y2="160" />
  </g>
- <text x="200" y="20" textAnchor="middle" className="fill-neutral-700 text-sm font-semibold">
- Rejunte entre azulejos
+
+ {/* Medidas */}
+ <line x1="100" y1="80" x2="160" y2="80" stroke="currentColor" className="text-blue-600" strokeWidth="2" markerEnd="url(#arrowhead-grout)" markerStart="url(#arrowhead-grout)" />
+ <text x="130" y="70" textAnchor="middle" className="fill-blue-700 text-xs font-semibold">
+ Largura (L)
  </text>
- <text x="200" y="190" textAnchor="middle" className="fill-neutral-600 text-xs">
- Fórmula: (L+C)/(L×C) × J × E × d
+
+ <line x1="80" y1="100" x2="80" y2="160" stroke="currentColor" className="text-green-600" strokeWidth="2" markerEnd="url(#arrowhead-grout)" markerStart="url(#arrowhead-grout)" />
+ <text x="70" y="130" className="fill-green-700 text-xs font-semibold" transform="rotate(-90, 70, 130)">
+ Comprimento (C)
  </text>
+
+ {/* Junta destacada */}
+ <line x1="160" y1="240" x2="220" y2="240" stroke="#dc2626" strokeWidth="6" />
+ <text x="190" y="255" textAnchor="middle" className="fill-red-700 text-xs font-semibold">
+ Largura da Junta (l)
+ </text>
+
+ {/* Profundidade */}
+ <rect x="520" y="120" width="60" height="80" fill="#e5e7eb" stroke="#6b7280" strokeWidth="2" />
+ <line x1="540" y1="120" x2="540" y2="200" stroke="#dc2626" strokeWidth="4" />
+ <text x="590" y="160" className="fill-red-700 text-xs font-semibold" transform="rotate(-90, 590, 160)">
+ Profundidade (p)
+ </text>
+
+ {/* Fórmula NBR 14992 */}
+ <text x="300" y="40" textAnchor="middle" className="fill-neutral-700 text-sm font-bold">
+ NBR 14992: Consumo/m² = ((L + C) ÷ (L × C)) × l × p × 1,6
+ </text>
+
+ {/* Tipos de rejunte */}
+ <g transform="translate(120, 270)">
+ <rect x="0" y="0" width="80" height="20" fill="#6b7280" rx="2" />
+ <text x="40" y="13" textAnchor="middle" className="fill-white text-xs font-semibold">Cimentício</text>
+ </g>
+
+ <g transform="translate(220, 270)">
+ <rect x="0" y="0" width="80" height="20" fill="#3b82f6" rx="2" />
+ <text x="40" y="13" textAnchor="middle" className="fill-white text-xs font-semibold">Acrílico</text>
+ </g>
+
+ <g transform="translate(320, 270)">
+ <rect x="0" y="0" width="80" height="20" fill="#059669" rx="2" />
+ <text x="40" y="13" textAnchor="middle" className="fill-white text-xs font-semibold">Epóxi</text>
+ </g>
  </svg>
  </div>
 
- <div className="prose prose-brand max-w-none">
- <p className="text-lg text-neutral-700 leading-relaxed">
- O cálculo preciso do rejunte é fundamental para um acabamento perfeito e evita desperdício. Nossa calculadora usa a fórmula técnica oficial que considera as dimensões das peças e características da junta.
- </p>
-
- <h3 className="text-xl font-semibold text-neutral-900 mt-6 mb-3">
- Fatores que Influenciam o Consumo
- </h3>
-
- <div className="grid md:grid-cols-2 gap-4 my-6">
- <div className="text-center p-4 bg-brand-50 rounded-xl">
- <div className="text-2xl font-bold text-brand-600 ">3mm</div>
- <div className="text-sm text-neutral-600 ">Junta padrão</div>
+ <div className="grid md:grid-cols-2 gap-8">
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-red-600 mb-2">Fórmula NBR 14992</h4>
+ <ul className="text-sm text-neutral-600 space-y-2">
+ <li><strong>L:</strong> Largura da peça (mm)</li>
+ <li><strong>C:</strong> Comprimento da peça (mm)</li>
+ <li><strong>l:</strong> Largura da junta (mm)</li>
+ <li><strong>p:</strong> Profundidade da junta (mm)</li>
+ <li><strong>1,6:</strong> Fator de densidade</li>
+ </ul>
  </div>
- <div className="text-center p-4 bg-brand-50 rounded-xl">
- <div className="text-2xl font-bold text-brand-600 ">1,6</div>
- <div className="text-sm text-neutral-600 ">Densidade kg/dm³</div>
- </div>
+
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-blue-600 mb-2">Larguras Recomendadas</h4>
+ <ul className="text-sm text-neutral-600 space-y-1">
+ <li>• <strong>Porcelanato:</strong> 2-3mm</li>
+ <li>• <strong>Cerâmica:</strong> 3-5mm</li>
+ <li>• <strong>Peças &gt;60cm:</strong> Mín. 3mm</li>
+ <li>• <strong>Áreas externas:</strong> 4-6mm</li>
+ </ul>
  </div>
  </div>
  </section>
@@ -392,14 +443,110 @@ export const CalculatorContent: React.FC<CalculatorContentProps> = ({ calculator
 
  <div className="p-6 rounded-xl border-2 border-transparent"
  style={getGradientBackground()}>
- <h4 className="font-semibold text-brand-600 mb-2">Tipos de Rejunte</h4>
+ <h4 className="font-semibold text-green-600 mb-2">Tipos de Rejunte</h4>
  <ul className="text-sm text-neutral-600 space-y-1">
- <li>• Cimentício: Uso geral, econômico</li>
- <li>• Epóxi: Áreas molhadas, alta resistência</li>
- <li>• Acrílico: Fácil aplicação, cores variadas</li>
- <li>• Flexível: Juntas de movimentação</li>
+ <li>• <strong>Cimentício:</strong> Uso geral (fator 1,0)</li>
+ <li>• <strong>Acrílico:</strong> Flexível, áreas úmidas (fator 0,9)</li>
+ <li>• <strong>Epóxi:</strong> Alta resistência, piscinas (fator 1,2)</li>
  </ul>
  </div>
+ </div>
+
+ <div className="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg">
+ <p className="text-amber-800">
+ <strong>Dica Técnica NBR 14992:</strong> Use espaçadores para garantir uniformidade das juntas.
+ Para juntas acima de 8mm, verifique a especificação do fabricante.
+ A profundidade da junta deve ser igual à espessura da peça cerâmica.
+ </p>
+ </div>
+ </section>
+ </div>
+ );
+
+ case 'roof-pitch':
+ return (
+ <div className="space-y-8">
+ <section>
+ <h2 className="text-2xl font-bold text-neutral-900 mb-4">
+ Como Calcular a Inclinação Ideal do Telhado
+ </h2>
+
+ {/* SVG Ilustrativo da Inclinação */}
+ <div className="bg-blue-50 rounded-2xl p-8 mb-8">
+ <svg viewBox="0 0 600 300" className="w-full h-64 mx-auto">
+ <defs>
+ <marker id="arrowhead-roof" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+ <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" className="text-neutral-600" />
+ </marker>
+ </defs>
+
+ {/* Base da casa */}
+ <rect x="150" y="200" width="300" height="80" fill="currentColor" className="text-neutral-300" stroke="currentColor" strokeWidth="2" />
+
+ {/* Telhado */}
+ <polygon points="150,200 300,120 450,200" fill="currentColor" className="text-red-500" opacity="0.8" stroke="#dc2626" strokeWidth="2" />
+
+ {/* Linha de avanço horizontal */}
+ <line x1="150" y1="200" x2="300" y2="200" stroke="currentColor" className="text-blue-600" strokeWidth="3" strokeDasharray="5,5" />
+
+ {/* Linha de altura vertical */}
+ <line x1="300" y1="200" x2="300" y2="120" stroke="currentColor" className="text-green-600" strokeWidth="3" strokeDasharray="5,5" />
+
+ {/* Setas de medição */}
+ <line x1="150" y1="220" x2="300" y2="220" stroke="currentColor" className="text-blue-600" strokeWidth="2" markerEnd="url(#arrowhead-roof)" markerStart="url(#arrowhead-roof)" />
+ <text x="225" y="240" textAnchor="middle" className="fill-blue-700 text-sm font-semibold">
+ Avanço Horizontal (m)
+ </text>
+
+ <line x1="320" y1="200" x2="320" y2="120" stroke="currentColor" className="text-green-600" strokeWidth="2" markerEnd="url(#arrowhead-roof)" markerStart="url(#arrowhead-roof)" />
+ <text x="340" y="160" className="fill-green-700 text-sm font-semibold">
+ Altura
+ </text>
+ <text x="340" y="175" className="fill-green-700 text-sm font-semibold">
+ Vertical (m)
+ </text>
+
+ {/* Ângulo de inclinação */}
+ <path d="M 150 200 A 30 30 0 0 0 170 185" fill="none" stroke="currentColor" className="text-purple-600" strokeWidth="2" />
+ <text x="175" y="195" className="fill-purple-700 text-xs font-semibold">θ</text>
+
+ {/* Fórmula */}
+ <text x="300" y="50" textAnchor="middle" className="fill-neutral-700 text-lg font-bold">
+ Inclinação (%) = (Altura ÷ Avanço) × 100
+ </text>
+ </svg>
+ </div>
+
+ <div className="grid md:grid-cols-2 gap-8">
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-blue-600 mb-2">Inclinações Mínimas</h4>
+ <ul className="text-sm text-neutral-600 space-y-2">
+ <li><strong>Cerâmica/Barro:</strong> 30% (16,7°)</li>
+ <li><strong>Fibrocimento:</strong> 10% (5,7°)</li>
+ <li><strong>Metálica:</strong> 5% (2,9°)</li>
+ <li><strong>Concreto:</strong> 30% (16,7°)</li>
+ <li><strong>Shingle:</strong> 17% (9,6°)</li>
+ </ul>
+ </div>
+
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-green-600 mb-2">Fórmulas de Cálculo</h4>
+ <ul className="text-sm text-neutral-600 space-y-1">
+ <li>• <strong>%:</strong> (Altura ÷ Avanço) × 100</li>
+ <li>• <strong>Graus:</strong> arctan(Altura ÷ Avanço)</li>
+ <li>• <strong>Empena:</strong> √(Avanço² + Altura²)</li>
+ <li>• <strong>Área:</strong> Avanço × Comprimento × 2</li>
+ </ul>
+ </div>
+ </div>
+
+ <div className="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg">
+ <p className="text-amber-800">
+ <strong>Importante:</strong> Uma inclinação abaixo do mínimo recomendado pode causar infiltrações,
+ acúmulo de água e problemas estruturais. Sempre consulte as especificações do fabricante da telha.
+ </p>
  </div>
  </section>
  </div>
@@ -410,7 +557,7 @@ export const CalculatorContent: React.FC<CalculatorContentProps> = ({ calculator
  <div className="space-y-8">
  <section>
  <h2 className="text-2xl font-bold text-neutral-900 mb-4">
- Como Calcular Telhas por m²
+ Como Calcular Telhas com Precisão Técnica
  </h2>
 
  {/* SVG Ilustrativo */}
@@ -426,33 +573,34 @@ export const CalculatorContent: React.FC<CalculatorContentProps> = ({ calculator
  Telhado com telhas cerâmicas
  </text>
  <text x="200" y="185" textAnchor="middle" className="fill-neutral-600 text-xs">
- Quantidade varia por tipo: 10,5 a 24 peças/m²
+ Consumo: Romana 16/m², Colonial 24/m², Plan 10/m², Fibrocimento 0,33/m²
  </text>
  </svg>
  </div>
 
- <div className="prose prose-brand max-w-none">
- <p className="text-lg text-neutral-700 leading-relaxed">
- O cálculo correto de telhas garante cobertura adequada e evita falta de material. Cada tipo de telha tem uma quantidade específica por m², baseada em suas dimensões e sobreposição.
- </p>
+ <div className="grid md:grid-cols-2 gap-8">
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-red-600 mb-2">Consumo por Tipo</h4>
+ <ul className="text-sm text-neutral-600 space-y-2">
+ <li><strong>Romana:</strong> 16 peças/m² (2,5kg/peça)</li>
+ <li><strong>Colonial:</strong> 24 peças/m² (2,0kg/peça)</li>
+ <li><strong>Portuguesa:</strong> 17 peças/m² (2,3kg/peça)</li>
+ <li><strong>Plan:</strong> 10 peças/m² (4,0kg/peça)</li>
+ <li><strong>Fibrocimento:</strong> 0,33 peças/m² (15kg/peça)</li>
+ </ul>
+ </div>
 
- <h3 className="text-xl font-semibold text-neutral-900 mt-6 mb-3">
- Tipos e Quantidades
- </h3>
-
- <div className="grid md:grid-cols-3 gap-4 my-6">
- <div className="text-center p-4 bg-red-50 rounded-xl">
- <div className="text-2xl font-bold text-red-600 ">16</div>
- <div className="text-sm text-neutral-600 ">Romana/Portuguesa</div>
- </div>
- <div className="text-center p-4 bg-red-50 rounded-xl">
- <div className="text-2xl font-bold text-red-600 ">24</div>
- <div className="text-sm text-neutral-600 ">Colonial</div>
- </div>
- <div className="text-center p-4 bg-red-50 rounded-xl">
- <div className="text-2xl font-bold text-red-600 ">10,5</div>
- <div className="text-sm text-neutral-600 ">Concreto</div>
- </div>
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-orange-600 mb-2">Fatores de Inclinação</h4>
+ <ul className="text-sm text-neutral-600 space-y-1">
+ <li>• <strong>30%:</strong> Fator 1,15</li>
+ <li>• <strong>40%:</strong> Fator 1,31</li>
+ <li>• <strong>50%:</strong> Fator 1,55</li>
+ <li>• <strong>60%:</strong> Fator 1,73</li>
+ <li>• <strong>70%+:</strong> Fator 2,00</li>
+ </ul>
  </div>
  </div>
  </section>
@@ -460,18 +608,13 @@ export const CalculatorContent: React.FC<CalculatorContentProps> = ({ calculator
  {/* Slot para AdSense */}
  <AdSlot />
 
- <section>
- <h3 className="text-xl font-semibold text-neutral-900 mb-4">
- Dicas Importantes
- </h3>
-
  <div className="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg">
- <p className="text-amber-800 ">
- <strong>Atenção:</strong> Sempre compre 10% a mais para quebras e reposição futura.
- Para telhados com muitos recortes ou formato irregular, considere 15% de margem.
+ <p className="text-amber-800">
+ <strong>Dica Técnica:</strong> Margem de 8% padrão para quebras e recortes.
+ Para telhados complexos, aumente para 10-12%. Considere a inclinação no cálculo da área real.
+ Para áreas &gt; 500m², é obrigatório cálculo estrutural profissional.
  </p>
  </div>
- </section>
  </div>
  );
 
@@ -480,7 +623,7 @@ export const CalculatorContent: React.FC<CalculatorContentProps> = ({ calculator
  <div className="space-y-8">
  <section>
  <h2 className="text-2xl font-bold text-neutral-900 mb-4">
- Como Calcular Rodapé e Guarnição
+ Como Calcular Rodapé e Guarnição com Precisão Técnica
  </h2>
 
  {/* SVG Ilustrativo */}
@@ -503,24 +646,27 @@ export const CalculatorContent: React.FC<CalculatorContentProps> = ({ calculator
  </svg>
  </div>
 
- <div className="prose prose-brand max-w-none">
- <p className="text-lg text-neutral-700 leading-relaxed">
- O cálculo de rodapé e guarnição considera o perímetro dos ambientes e o contorno das portas. Nossa calculadora otimiza o aproveitamento das barras padrão de 2,40m.
- </p>
-
- <h3 className="text-xl font-semibold text-neutral-900 mt-6 mb-3">
- Fórmulas de Cálculo
- </h3>
-
- <div className="grid md:grid-cols-2 gap-4 my-6">
- <div className="text-center p-4 bg-amber-50 rounded-xl">
- <div className="text-lg font-bold text-amber-600 ">Rodapé</div>
- <div className="text-sm text-neutral-600 ">2 × (Comprimento + Largura)</div>
+ <div className="grid md:grid-cols-2 gap-8">
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-amber-600 mb-2">Fórmulas de Cálculo</h4>
+ <ul className="text-sm text-neutral-600 space-y-2">
+ <li><strong>Perímetro:</strong> 2 × (Comprimento + Largura)</li>
+ <li><strong>Rodapé:</strong> Perímetro × Número de Cômodos</li>
+ <li><strong>Guarnição:</strong> (2 × Altura + Largura) × Portas</li>
+ <li><strong>Barras:</strong> ⌈Metros ÷ Comprimento da Barra⌉</li>
+ </ul>
  </div>
- <div className="text-center p-4 bg-amber-50 rounded-xl">
- <div className="text-lg font-bold text-amber-600 ">Guarnição</div>
- <div className="text-sm text-neutral-600 ">Lados × (2 × Altura + Largura)</div>
- </div>
+
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-brown-600 mb-2">Alturas de Rodapé</h4>
+ <ul className="text-sm text-neutral-600 space-y-1">
+ <li>• <strong>7cm:</strong> Pé-direito baixo</li>
+ <li>• <strong>10cm:</strong> Padrão residencial</li>
+ <li>• <strong>15cm:</strong> Pé-direito alto</li>
+ <li>• <strong>20cm:</strong> Pé-direito muito alto</li>
+ </ul>
  </div>
  </div>
  </section>
@@ -536,25 +682,443 @@ export const CalculatorContent: React.FC<CalculatorContentProps> = ({ calculator
  <div className="grid md:grid-cols-2 gap-6">
  <div className="p-6 rounded-xl border-2 border-transparent"
  style={getGradientBackground()}>
- <h4 className="font-semibold text-brand-600 mb-2">Rodapé</h4>
+ <h4 className="font-semibold text-amber-600 mb-2">Barras Comerciais</h4>
  <ul className="text-sm text-neutral-600 space-y-1">
- <li>• Instale após o piso e pintura</li>
- <li>• Use cola e pregos para fixação</li>
- <li>• Faça emendas em ângulo de 45°</li>
- <li>• Deixe folga de 2mm nas emendas</li>
+ <li>• <strong>2,20m:</strong> Padrão econômico</li>
+ <li>• <strong>2,40m:</strong> Mais comum</li>
+ <li>• <strong>2,60m:</strong> Reduz emendas</li>
+ </ul>
+ </div>
+ </div>
+
+ <div className="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg">
+ <p className="text-amber-800">
+ <strong>Dica Técnica:</strong> Margem de 8% padrão para cortes e emendas.
+ Rodapé = acabamento entre piso e parede. Guarnição = acabamento que cobre batente e parede.
+ Altura do rodapé deve ser proporcional ao pé-direito do ambiente.
+ </p>
+ </div>
+ </section>
+ </div>
+ );
+
+ case 'wallpaper':
+ return (
+ <div className="space-y-8">
+ <section>
+ <h2 className="text-2xl font-bold text-neutral-900 mb-4">
+ Como Calcular Papel de Parede com Precisão Técnica
+ </h2>
+
+ {/* SVG Ilustrativo do Papel de Parede */}
+ <div className="bg-purple-50 rounded-2xl p-8 mb-8">
+ <svg viewBox="0 0 600 300" className="w-full h-64 mx-auto">
+ <defs>
+ <pattern id="wallpaperPattern" x="0" y="0" width="40" height="60" patternUnits="userSpaceOnUse">
+ <rect width="40" height="60" fill="#f3e8ff" />
+ <circle cx="20" cy="15" r="3" fill="#8b5cf6" opacity="0.6" />
+ <circle cx="20" cy="45" r="3" fill="#8b5cf6" opacity="0.6" />
+ <path d="M10 30 Q20 25 30 30 Q20 35 10 30" fill="#a855f7" opacity="0.4" />
+ </pattern>
+ <marker id="arrowhead-wallpaper" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+ <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" className="text-neutral-600" />
+ </marker>
+ </defs>
+
+ {/* Parede com papel */}
+ <rect x="100" y="80" width="400" height="160" fill="url(#wallpaperPattern)" stroke="#8b5cf6" strokeWidth="2" rx="4" />
+
+ {/* Porta */}
+ <rect x="180" y="160" width="60" height="80" fill="white" stroke="#6b7280" strokeWidth="2" rx="2" />
+ <circle cx="230" cy="200" r="2" fill="#6b7280" />
+
+ {/* Janela */}
+ <rect x="320" y="120" width="80" height="60" fill="white" stroke="#6b7280" strokeWidth="2" rx="2" />
+ <line x1="360" y1="120" x2="360" y2="180" stroke="#6b7280" strokeWidth="1" />
+ <line x1="320" y1="150" x2="400" y2="150" stroke="#6b7280" strokeWidth="1" />
+
+ {/* Medidas */}
+ <line x1="100" y1="60" x2="500" y2="60" stroke="currentColor" className="text-purple-600" strokeWidth="2" markerEnd="url(#arrowhead-wallpaper)" markerStart="url(#arrowhead-wallpaper)" />
+ <text x="300" y="50" textAnchor="middle" className="fill-purple-700 text-sm font-semibold">
+ Perímetro das Paredes
+ </text>
+
+ <line x1="80" y1="80" x2="80" y2="240" stroke="currentColor" className="text-green-600" strokeWidth="2" markerEnd="url(#arrowhead-wallpaper)" markerStart="url(#arrowhead-wallpaper)" />
+ <text x="70" y="160" textAnchor="middle" className="fill-green-700 text-sm font-semibold" transform="rotate(-90, 70, 160)">
+ Altura (Pé-direito)
+ </text>
+
+ {/* Rapport */}
+ <line x1="520" y1="95" x2="520" y2="155" stroke="currentColor" className="text-orange-600" strokeWidth="3" strokeDasharray="3,3" />
+ <text x="530" y="125" className="fill-orange-700 text-xs font-semibold">
+ Rapport
+ </text>
+ <text x="530" y="140" className="fill-orange-700 text-xs font-semibold">
+ (32cm)
+ </text>
+
+ {/* Fórmula */}
+ <text x="300" y="280" textAnchor="middle" className="fill-neutral-700 text-sm font-bold">
+ Rolos = ⌈(Perímetro × Altura - Aberturas) × (1 + Perdas%) ÷ Área do Rolo⌉
+ </text>
+ </svg>
+ </div>
+
+ <div className="grid md:grid-cols-2 gap-8">
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-purple-600 mb-2">Entendendo o Rapport</h4>
+ <ul className="text-sm text-neutral-600 space-y-2">
+ <li><strong>0cm:</strong> Sem padrão (liso ou textura)</li>
+ <li><strong>16-32cm:</strong> Padrão pequeno (mais comum)</li>
+ <li><strong>32-64cm:</strong> Padrão médio (atenção ao consumo)</li>
+ <li><strong>&gt;64cm:</strong> Padrão grande (alto consumo)</li>
  </ul>
  </div>
 
  <div className="p-6 rounded-xl border-2 border-transparent"
  style={getGradientBackground()}>
- <h4 className="font-semibold text-brand-600 mb-2">Guarnição</h4>
+ <h4 className="font-semibold text-green-600 mb-2">Padrões Brasileiros</h4>
  <ul className="text-sm text-neutral-600 space-y-1">
- <li>• Instale após o batente da porta</li>
- <li>• Corte em ângulo de 45° nos cantos</li>
- <li>• Use pregos sem cabeça</li>
- <li>• Vede com massa corrida se necessário</li>
+ <li>• <strong>Largura:</strong> 0,52m (52cm)</li>
+ <li>• <strong>Comprimento:</strong> 10m por rolo</li>
+ <li>• <strong>Área:</strong> 5,2 m² por rolo</li>
+ <li>• <strong>Cola:</strong> 200g por m²</li>
  </ul>
  </div>
+ </div>
+
+ <div className="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg">
+ <p className="text-amber-800">
+ <strong>Dica Profissional:</strong> Se a altura da parede for maior que o comprimento do rolo,
+ serão necessárias emendas horizontais. Para rapport &gt; 30cm, considere aumentar a margem para 15%.
+ Sempre compre rolos do mesmo lote para evitar diferenças de cor.
+ </p>
+ </div>
+ </section>
+ </div>
+ );
+
+ case 'mortar':
+ return (
+ <div className="space-y-8">
+ <section>
+ <h2 className="text-2xl font-bold text-neutral-900 mb-4">
+ Como Calcular Argamassa com Precisão Técnica
+ </h2>
+
+ {/* SVG Ilustrativo da Aplicação de Argamassa */}
+ <div className="bg-orange-50 rounded-2xl p-8 mb-8">
+ <svg viewBox="0 0 600 300" className="w-full h-64 mx-auto">
+ <defs>
+ <pattern id="brickPattern" x="0" y="0" width="60" height="30" patternUnits="userSpaceOnUse">
+ <rect width="60" height="30" fill="#d97706" />
+ <rect x="2" y="2" width="56" height="26" fill="#ea580c" />
+ <line x1="30" y1="0" x2="30" y2="30" stroke="#92400e" strokeWidth="1" />
+ </pattern>
+ <marker id="arrowhead-mortar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+ <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" className="text-neutral-600" />
+ </marker>
+ </defs>
+
+ {/* Parede de tijolos */}
+ <rect x="100" y="100" width="400" height="120" fill="url(#brickPattern)" stroke="#92400e" strokeWidth="2" rx="4" />
+
+ {/* Camada de argamassa */}
+ <rect x="95" y="95" width="410" height="8" fill="#a3a3a3" stroke="#737373" strokeWidth="1" rx="2" />
+ <text x="300" y="90" textAnchor="middle" className="fill-neutral-700 text-xs font-semibold">
+ Camada de Argamassa
+ </text>
+
+ {/* Espessura */}
+ <line x1="80" y1="95" x2="80" y2="103" stroke="currentColor" className="text-orange-600" strokeWidth="2" markerEnd="url(#arrowhead-mortar)" markerStart="url(#arrowhead-mortar)" />
+ <text x="70" y="100" className="fill-orange-700 text-xs font-semibold" transform="rotate(-90, 70, 100)">
+ Espessura
+ </text>
+
+ {/* Área */}
+ <line x1="100" y1="80" x2="500" y2="80" stroke="currentColor" className="text-blue-600" strokeWidth="2" markerEnd="url(#arrowhead-mortar)" markerStart="url(#arrowhead-mortar)" />
+ <text x="300" y="70" textAnchor="middle" className="fill-blue-700 text-sm font-semibold">
+ Área Total (m²)
+ </text>
+
+ {/* Tipos de aplicação */}
+ <g transform="translate(120, 240)">
+ <rect x="0" y="0" width="80" height="20" fill="#fbbf24" rx="2" />
+ <text x="40" y="13" textAnchor="middle" className="fill-neutral-800 text-xs font-semibold">Chapisco</text>
+ </g>
+
+ <g transform="translate(220, 240)">
+ <rect x="0" y="0" width="80" height="20" fill="#f59e0b" rx="2" />
+ <text x="40" y="13" textAnchor="middle" className="fill-neutral-800 text-xs font-semibold">Reboco</text>
+ </g>
+
+ <g transform="translate(320, 240)">
+ <rect x="0" y="0" width="80" height="20" fill="#d97706" rx="2" />
+ <text x="40" y="13" textAnchor="middle" className="fill-neutral-800 text-xs font-semibold">Contrapiso</text>
+ </g>
+
+ {/* Fórmula */}
+ <text x="300" y="40" textAnchor="middle" className="fill-neutral-700 text-sm font-bold">
+ Kg Total = Área × Fator × Espessura × (1 + Perdas%)
+ </text>
+ </svg>
+ </div>
+
+ <div className="grid md:grid-cols-2 gap-8">
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-orange-600 mb-2">Fatores de Consumo</h4>
+ <ul className="text-sm text-neutral-600 space-y-2">
+ <li><strong>Chapisco:</strong> 3,0 kg/m²/cm</li>
+ <li><strong>Reboco:</strong> 1,2 kg/m²/mm</li>
+ <li><strong>Contrapiso:</strong> 2,0 kg/m²/cm</li>
+ <li><strong>Assentamento:</strong> 1,0-1,5 kg/m²/mm</li>
+ </ul>
+ </div>
+
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-green-600 mb-2">Espessuras Padrão</h4>
+ <ul className="text-sm text-neutral-600 space-y-1">
+ <li>• <strong>Chapisco:</strong> 3-8mm</li>
+ <li>• <strong>Reboco:</strong> 10-20mm</li>
+ <li>• <strong>Contrapiso:</strong> 15-30mm</li>
+ <li>• <strong>Assentamento:</strong> 3-10mm</li>
+ </ul>
+ </div>
+ </div>
+
+ <div className="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg">
+ <p className="text-amber-800">
+ <strong>Dica Técnica:</strong> Para espessuras acima de 30mm, aplique em duas camadas para evitar
+ trincas e garantir aderência adequada. Superfícies irregulares podem precisar de 15% a mais de argamassa.
+ </p>
+ </div>
+ </section>
+ </div>
+ );
+
+ case 'concrete':
+ return (
+ <div className="space-y-8">
+ <section>
+ <h2 className="text-2xl font-bold text-neutral-900 mb-4">
+ Como Calcular Concreto com Traços Técnicos Precisos
+ </h2>
+
+ {/* SVG Ilustrativo do Concreto */}
+ <div className="bg-gray-50 rounded-2xl p-8 mb-8">
+ <svg viewBox="0 0 600 300" className="w-full h-64 mx-auto">
+ <defs>
+ <pattern id="concretePattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+ <rect width="20" height="20" fill="#e5e7eb" />
+ <circle cx="5" cy="5" r="2" fill="#6b7280" />
+ <circle cx="15" cy="15" r="1.5" fill="#9ca3af" />
+ <circle cx="10" cy="18" r="1" fill="#6b7280" />
+ </pattern>
+ <marker id="arrowhead-concrete" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+ <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" className="text-neutral-600" />
+ </marker>
+ </defs>
+
+ {/* Estrutura de concreto */}
+ <rect x="100" y="120" width="400" height="80" fill="url(#concretePattern)" stroke="#6b7280" strokeWidth="2" rx="4" />
+
+ {/* Componentes do concreto */}
+ <g transform="translate(120, 140)">
+ <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+ <text x="15" y="5" className="fill-purple-700 text-xs font-semibold">Cimento</text>
+ </g>
+
+ <g transform="translate(200, 160)">
+ <circle cx="0" cy="0" r="6" fill="#f59e0b" />
+ <text x="15" y="5" className="fill-amber-700 text-xs font-semibold">Areia</text>
+ </g>
+
+ <g transform="translate(280, 150)">
+ <circle cx="0" cy="0" r="10" fill="#6b7280" />
+ <text x="15" y="5" className="fill-gray-700 text-xs font-semibold">Brita</text>
+ </g>
+
+ <g transform="translate(360, 170)">
+ <circle cx="0" cy="0" r="4" fill="#3b82f6" />
+ <text x="15" y="5" className="fill-blue-700 text-xs font-semibold">Água</text>
+ </g>
+
+ {/* Volume */}
+ <line x1="100" y1="100" x2="500" y2="100" stroke="currentColor" className="text-blue-600" strokeWidth="2" markerEnd="url(#arrowhead-concrete)" markerStart="url(#arrowhead-concrete)" />
+ <text x="300" y="90" textAnchor="middle" className="fill-blue-700 text-sm font-semibold">
+ Volume (m³)
+ </text>
+
+ {/* FCK */}
+ <text x="300" y="250" textAnchor="middle" className="fill-neutral-700 text-lg font-bold">
+ FCK = Resistência à Compressão (MPa)
+ </text>
+
+ {/* Traços */}
+ <g transform="translate(120, 220)">
+ <rect x="0" y="0" width="80" height="20" fill="#8b5cf6" rx="2" />
+ <text x="40" y="13" textAnchor="middle" className="fill-white text-xs font-semibold">FCK 15</text>
+ </g>
+
+ <g transform="translate(220, 220)">
+ <rect x="0" y="0" width="80" height="20" fill="#7c3aed" rx="2" />
+ <text x="40" y="13" textAnchor="middle" className="fill-white text-xs font-semibold">FCK 20</text>
+ </g>
+
+ <g transform="translate(320, 220)">
+ <rect x="0" y="0" width="80" height="20" fill="#6d28d9" rx="2" />
+ <text x="40" y="13" textAnchor="middle" className="fill-white text-xs font-semibold">FCK 25</text>
+ </g>
+
+ <g transform="translate(420, 220)">
+ <rect x="0" y="0" width="80" height="20" fill="#5b21b6" rx="2" />
+ <text x="40" y="13" textAnchor="middle" className="fill-white text-xs font-semibold">FCK 30</text>
+ </g>
+
+ {/* Fórmula */}
+ <text x="300" y="40" textAnchor="middle" className="fill-neutral-700 text-sm font-bold">
+ Materiais = Volume × Consumo FCK × Traço do Método
+ </text>
+ </svg>
+ </div>
+
+ <div className="grid md:grid-cols-2 gap-8">
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-purple-600 mb-2">Consumos por FCK</h4>
+ <ul className="text-sm text-neutral-600 space-y-2">
+ <li><strong>FCK 15:</strong> 280 kg/m³</li>
+ <li><strong>FCK 20:</strong> 320 kg/m³</li>
+ <li><strong>FCK 25:</strong> 360 kg/m³</li>
+ <li><strong>FCK 30:</strong> 400 kg/m³</li>
+ </ul>
+ </div>
+
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-green-600 mb-2">Traços por Método</h4>
+ <ul className="text-sm text-neutral-600 space-y-1">
+ <li>• <strong>Manual:</strong> 1:3:4</li>
+ <li>• <strong>Betoneira pequena:</strong> 1:2,5:3,5</li>
+ <li>• <strong>Betoneira média:</strong> 1:2,3:3,2</li>
+ <li>• <strong>Betoneira grande:</strong> 1:2,2:3,0</li>
+ </ul>
+ </div>
+ </div>
+
+ <div className="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg">
+ <p className="text-amber-800">
+ <strong>Dica Técnica:</strong> Para volumes acima de 5m³, considere bombeamento.
+ Acima de 50m³, recomende concreto usinado. FCK estrutural (25+ MPa) sempre consulte um engenheiro.
+ Água limpa e proporções corretas são fundamentais para a resistência.
+ </p>
+ </div>
+ </section>
+ </div>
+ );
+
+ case 'lawn-grass':
+ return (
+ <div className="space-y-8">
+ <section>
+ <h2 className="text-2xl font-bold text-neutral-900 mb-4">
+ Como Calcular Grama com Precisão Técnica
+ </h2>
+
+ {/* SVG Ilustrativo da Grama */}
+ <div className="bg-green-50 rounded-2xl p-8 mb-8">
+ <svg viewBox="0 0 600 300" className="w-full h-64 mx-auto">
+ <defs>
+ <pattern id="grassPattern" x="0" y="0" width="15" height="20" patternUnits="userSpaceOnUse">
+ <rect width="15" height="20" fill="#dcfce7" />
+ <path d="M3 20 Q7.5 15 3 10 Q7.5 5 3 0" stroke="#16a34a" strokeWidth="1" fill="none" />
+ <path d="M8 20 Q12.5 15 8 10 Q12.5 5 8 0" stroke="#15803d" strokeWidth="1" fill="none" />
+ <path d="M13 20 Q17.5 15 13 10 Q17.5 5 13 0" stroke="#16a34a" strokeWidth="1" fill="none" />
+ </pattern>
+ <marker id="arrowhead-grass" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+ <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" className="text-neutral-600" />
+ </marker>
+ </defs>
+
+ {/* Área do gramado */}
+ <rect x="100" y="120" width="400" height="120" fill="url(#grassPattern)" stroke="#16a34a" strokeWidth="2" rx="8" />
+
+ {/* Tipos de grama */}
+ <g transform="translate(120, 140)">
+ <rect x="0" y="0" width="60" height="30" fill="#22c55e" rx="4" />
+ <text x="30" y="20" textAnchor="middle" className="fill-white text-xs font-semibold">Rolo</text>
+ <text x="30" y="45" textAnchor="middle" className="fill-green-700 text-xs">0,40 m²</text>
+ </g>
+
+ <g transform="translate(200, 140)">
+ <rect x="0" y="0" width="60" height="30" fill="#16a34a" rx="4" />
+ <text x="30" y="20" textAnchor="middle" className="fill-white text-xs font-semibold">Placa</text>
+ <text x="30" y="45" textAnchor="middle" className="fill-green-700 text-xs">0,135 m²</text>
+ </g>
+
+ <g transform="translate(280, 140)">
+ <rect x="0" y="0" width="60" height="30" fill="#15803d" rx="4" />
+ <text x="30" y="20" textAnchor="middle" className="fill-white text-xs font-semibold">Sementes</text>
+ <text x="30" y="45" textAnchor="middle" className="fill-green-700 text-xs">35 m²/kg</text>
+ </g>
+
+ <g transform="translate(360, 140)">
+ <rect x="0" y="0" width="60" height="30" fill="#166534" rx="4" />
+ <text x="30" y="20" textAnchor="middle" className="fill-white text-xs font-semibold">Adubo</text>
+ <text x="30" y="45" textAnchor="middle" className="fill-green-700 text-xs">50g/m²</text>
+ </g>
+
+ {/* Área */}
+ <line x1="100" y1="100" x2="500" y2="100" stroke="currentColor" className="text-green-600" strokeWidth="2" markerEnd="url(#arrowhead-grass)" markerStart="url(#arrowhead-grass)" />
+ <text x="300" y="90" textAnchor="middle" className="fill-green-700 text-sm font-semibold">
+ Área do Gramado (m²)
+ </text>
+
+ {/* Variedades */}
+ <text x="300" y="270" textAnchor="middle" className="fill-neutral-700 text-lg font-bold">
+ Variedades: São Carlos • Esmeralda • Batatais • Bermuda
+ </text>
+
+ {/* Fórmula */}
+ <text x="300" y="40" textAnchor="middle" className="fill-neutral-700 text-sm font-bold">
+ Quantidade = ⌈Área × (1 + Perdas%) ÷ Cobertura por Unidade⌉
+ </text>
+ </svg>
+ </div>
+
+ <div className="grid md:grid-cols-2 gap-8">
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-green-600 mb-2">Coberturas por Tipo</h4>
+ <ul className="text-sm text-neutral-600 space-y-2">
+ <li><strong>Rolo:</strong> 0,40 m² (≈15kg)</li>
+ <li><strong>Placa:</strong> 0,135 m² (≈5kg)</li>
+ <li><strong>Sementes:</strong> 35 m²/kg</li>
+ <li><strong>Adubo:</strong> 50g/m² inicial</li>
+ </ul>
+ </div>
+
+ <div className="p-6 rounded-xl border-2 border-transparent"
+ style={getGradientBackground()}>
+ <h4 className="font-semibold text-blue-600 mb-2">Variedades Principais</h4>
+ <ul className="text-sm text-neutral-600 space-y-1">
+ <li>• <strong>São Carlos:</strong> Sol/meia-sombra</li>
+ <li>• <strong>Esmeralda:</strong> Sol pleno</li>
+ <li>• <strong>Batatais:</strong> Resistente</li>
+ <li>• <strong>Bermuda:</strong> Esportiva</li>
+ </ul>
+ </div>
+ </div>
+
+ <div className="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg">
+ <p className="text-amber-800">
+ <strong>Dica de Paisagismo:</strong> Para áreas acima de 500m², considere plantio por etapas.
+ Rolos oferecem resultado imediato, placas são econômicas e sementes são ideais para grandes áreas.
+ Sempre prepare o solo adequadamente e mantenha irrigação constante nos primeiros 30 dias.
+ </p>
  </div>
  </section>
  </div>

@@ -4,6 +4,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  base: process.env.NODE_ENV === 'production' ? '/quantovai/' : '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
@@ -11,19 +12,21 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
+    sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          motion: ['framer-motion'],
-          icons: ['lucide-react']
-        }
+        manualChunks: undefined
       }
     }
   },
   server: {
     port: 5173,
-    host: true
+    host: true,
+    hmr: {
+      overlay: false
+    }
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'framer-motion', 'lucide-react']
   }
 })

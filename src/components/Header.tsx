@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTheme } from '../hooks/useTheme';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Youtube } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from './Logo';
 
@@ -46,7 +46,7 @@ export function Header() {
 
  const navLinks = [
  { href: "/", label: "Calculadoras" },
- { href: "/blog", label: "Blog" },
+ { href: "https://blog.quantovai.com.br", label: "Blog", external: true },
  { href: "/como-funciona", label: "Como funciona" },
  { href: "/sobre", label: "Sobre" },
  ];
@@ -54,20 +54,25 @@ export function Header() {
  return (
  <header className="sticky top-0 z-50 w-full border-b-2 border-transparent
  bg-white/90 backdrop-blur-xl
- shadow-sm shadow-brand-500/5"
+ shadow-sm shadow-brand-500/5 overflow-visible"
  style={{
  borderImage: 'linear-gradient(to right, #10B981, #059669, #1F2937) 1'
  }}>
- <div className="mx-auto max-w-6xl px-6 h-20 flex items-center justify-between">
+ <div className="mx-auto max-w-6xl px-6 h-20 flex items-center justify-between overflow-visible">
  <a href="/" aria-label="Página inicial do QuantoVai"
- className="transition-transform duration-300 hover:scale-105">
- <Logo className="h-10" />
+ className="flex items-center py-2 flex-shrink-0 overflow-visible mt-4">
+ <Logo
+   variant="responsive"
+   size="lg"
+ />
  </a>
 
  <nav className="hidden md:flex items-center gap-10 text-base">
  {navLinks.map(link => (
  <a key={link.href}
  href={link.href}
+ target={link.external ? "_blank" : undefined}
+ rel={link.external ? "noopener noreferrer" : undefined}
  className="relative font-semibold text-neutral-700
  hover:text-brand-600
  transition-all duration-300 group py-2 px-1">
@@ -77,7 +82,22 @@ export function Header() {
  </a>
  ))}
  </nav>
- 
+
+ {/* YouTube Icon */}
+ <a href="https://www.youtube.com/@quantovai"
+ target="_blank"
+ rel="noopener noreferrer"
+ className="hidden md:flex items-center justify-center w-10 h-10
+ text-red-600 hover:text-red-700
+ bg-gradient-to-br from-red-50 to-red-100
+ hover:from-red-100 hover:to-red-200
+ transition-all duration-300 rounded-xl shadow-sm hover:shadow-md
+ border border-red-200/50 hover:border-red-400
+ hover:scale-105"
+ aria-label="Canal do YouTube QuantoVai">
+ <Youtube className="h-5 w-5" />
+ </a>
+
  <div className="md:hidden">
  <button
  onClick={() => setIsMenuOpen(true)}
@@ -98,8 +118,8 @@ export function Header() {
  <Sheet isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
  <div className="p-4 h-full flex flex-col">
  <div className="flex items-center justify-between mb-8">
- <a href="/" aria-label="Página inicial do QuantoVai">
- <Logo className="h-8" />
+ <a href="/" aria-label="Página inicial do QuantoVai" className="flex items-center">
+ <Logo variant="full" size="md" />
  </a>
  <button onClick={() => setIsMenuOpen(false)} className="p-2" aria-label="Fechar menu">
  <X className="h-6 w-6 text-neutral-700" />
@@ -107,8 +127,25 @@ export function Header() {
  </div>
  <nav className="flex-grow space-y-3">
  {navLinks.map(link => (
- <a key={link.href} href={link.href} className="block text-neutral-700 hover:text-brand-500 transition-colors py-2 font-medium text-lg">{link.label}</a>
+ <a key={link.href}
+    href={link.href}
+    target={link.external ? "_blank" : undefined}
+    rel={link.external ? "noopener noreferrer" : undefined}
+    className="block text-neutral-700 hover:text-brand-500 transition-colors py-2 font-medium text-lg">
+    {link.label}
+ </a>
  ))}
+
+ {/* YouTube Link in Mobile Menu */}
+ <div className="mt-6 pt-6 border-t border-neutral-200">
+ <a href="https://www.youtube.com/@quantovai"
+ target="_blank"
+ rel="noopener noreferrer"
+ className="flex items-center gap-3 text-red-600 hover:text-red-700 transition-colors py-3 font-medium text-lg">
+ <Youtube className="h-6 w-6" />
+ Canal no YouTube
+ </a>
+ </div>
  </nav>
  </div>
  </Sheet>

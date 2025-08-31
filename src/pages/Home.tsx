@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { CalculatorCard } from "../components/CalculatorCard";
@@ -11,6 +11,7 @@ import { Accordion } from "../components/Accordion";
 import { CategoryButton } from "../components/CategoryButton";
 import { SuggestionChip } from "../components/SuggestionChip";
 import { calculatorConfigs } from "../data/calculatorConfigs";
+import { findBestMatch, hasMultipleMatches } from "../utils/searchUtils";
 
 const POPULAR_CALCS_IDS = ['roof-pitch', 'wallpaper', 'floor-tiles', 'paint', 'mortar', 'roof-tiles'];
 
@@ -18,8 +19,42 @@ export function Home(){
  const { adsVisible, triggerAdLoad } = useAdLoader();
  const { getGradientBackground } = useGradientBorder();
 
+ const [searchQuery, setSearchQuery] = useState("");
+
  const allCalculators = Object.values(calculatorConfigs);
  const popularCalculators = POPULAR_CALCS_IDS.map(id => calculatorConfigs[id]).filter(Boolean);
+
+ // Função de busca aprimorada
+ const handleSearch = (e: React.FormEvent) => {
+   e.preventDefault();
+   if (searchQuery.trim()) {
+     const query = searchQuery.trim();
+
+     // Usar o sistema de busca aprimorado
+     const bestMatch = findBestMatch(query);
+     const multipleMatches = hasMultipleMatches(query);
+
+     if (bestMatch && !multipleMatches) {
+       // Se há uma correspondência clara, navegar diretamente
+       window.location.href = `/calculadora/${bestMatch.id}`;
+     } else if (bestMatch || multipleMatches) {
+       // Se há múltiplas correspondências, mostrar página de resultados
+       window.location.href = `/busca?q=${encodeURIComponent(query)}`;
+     } else {
+       // Se não encontrar nada, rolar para seção de calculadoras
+       const calculatorSection = document.getElementById('calculadoras');
+       if (calculatorSection) {
+         calculatorSection.scrollIntoView({ behavior: 'smooth' });
+       }
+     }
+   }
+ };
+
+ const handleKeyPress = (e: React.KeyboardEvent) => {
+   if (e.key === 'Enter') {
+     handleSearch(e as any);
+   }
+ };
 
  return (
  <div className="min-h-screen bg-surface" onClick={triggerAdLoad} onFocus={triggerAdLoad} onScroll={triggerAdLoad}>
@@ -33,23 +68,43 @@ export function Home(){
  </p>
  {/* Search */}
  <div className="mt-8 max-w-4xl mx-auto">
- <div className="relative p-1 rounded-3xl bg-gradient-to-r from-brand-500 via-brand-600 to-neutral-800">
+ <form onSubmit={handleSearch} className="relative p-1 rounded-3xl bg-gradient-to-r from-brand-500 via-brand-600 to-neutral-800">
  <div className="relative">
  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-8">
  <Search className="w-8 h-8 text-brand-600 " />
  </div>
  <input
+ type="text"
+ value={searchQuery}
+ onChange={(e) => setSearchQuery(e.target.value)}
+ onKeyPress={handleKeyPress}
  placeholder="O que você quer calcular? Ex: pisos, tinta, concreto..."
  className="w-full h-20 rounded-3xl border-0
- bg-white 
- pl-20 pr-8 text-xl text-neutral-900 
- placeholder:text-neutral-500 :text-neutral-400
- outline-none shadow-xl shadow-brand-500/20 
+ bg-white
+ pl-20 pr-32 text-xl text-neutral-900
+ placeholder:text-neutral-500
+ outline-none shadow-xl shadow-brand-500/20
  focus:ring-4 focus:ring-brand-500/30
  hover:shadow-2xl hover:shadow-brand-500/30
  transition-all duration-300 font-medium backdrop-blur-sm"
  />
+ {/* Search Button */}
+ <button
+ type="submit"
+ className="absolute inset-y-0 right-0 flex items-center pr-4
+ text-white font-bold text-lg
+ bg-gradient-to-r from-brand-500 to-brand-600
+ hover:from-brand-600 hover:to-brand-700
+ rounded-r-3xl px-6
+ transition-all duration-300
+ hover:shadow-lg hover:shadow-brand-500/30
+ focus:outline-none focus:ring-4 focus:ring-brand-500/30
+ active:scale-95"
+ >
+ Buscar
+ </button>
  </div>
+ </form>
  </div>
 
  {/* Sugestões rápidas */}
@@ -68,7 +123,6 @@ export function Home(){
  {suggestion.name}
  </SuggestionChip>
  ))}
- </div>
  </div>
  </section>
 
@@ -89,7 +143,7 @@ export function Home(){
  <AdSlot id="home-ad-1" className="my-8" load={adsVisible} />
 
  {/* Main Grid */}
- <section className="py-8">
+ <section id="calculadoras" className="py-8">
  <div className="text-center mb-12">
  <h2 className="text-4xl font-bold font-heading text-neutral-900 mb-4">
  Calculadoras Populares
