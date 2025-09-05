@@ -1,10 +1,33 @@
 // Script para submeter URLs ao Google Indexing API
 import { google } from 'googleapis';
-import { generateAllUrls } from './generate-urls.js';
+import { readFileSync } from 'fs';
 
 // Configuração da API
 const SCOPES = ['https://www.googleapis.com/auth/indexing'];
-const SERVICE_ACCOUNT_FILE = './google-service-account.json'; // Você precisará criar este arquivo
+const CREDENTIALS_FILE = './google-service-account.json';
+
+// URLs do QuantoVai
+const SITE_URL = 'https://quantovai.com.br';
+const urls = [
+  // Páginas principais
+  `${SITE_URL}`,
+  `${SITE_URL}/calculadoras`,
+  `${SITE_URL}/sobre`,
+  `${SITE_URL}/como-funciona`,
+
+  // Calculadoras individuais
+  `${SITE_URL}/calculadora/floor-tiles`,
+  `${SITE_URL}/calculadora/wallpaper`,
+  `${SITE_URL}/calculadora/paint`,
+  `${SITE_URL}/calculadora/mortar`,
+  `${SITE_URL}/calculadora/concrete`,
+  `${SITE_URL}/calculadora/roof-tiles`,
+  `${SITE_URL}/calculadora/roof-pitch`,
+  `${SITE_URL}/calculadora/grout`,
+  `${SITE_URL}/calculadora/baseboard`,
+  `${SITE_URL}/calculadora/grass-seed`,
+  `${SITE_URL}/calculadora/air-conditioning`,
+];
 
 class GoogleIndexingSubmitter {
   constructor() {
@@ -15,19 +38,30 @@ class GoogleIndexingSubmitter {
   // Inicializar autenticação
   async initialize() {
     try {
-      // Autenticação com Service Account
-      this.auth = new google.auth.GoogleAuth({
-        keyFile: SERVICE_ACCOUNT_FILE,
-        scopes: SCOPES,
-      });
+      // Ler credenciais OAuth
+      const credentials = JSON.parse(readFileSync(CREDENTIALS_FILE, 'utf8'));
+
+      // Configurar OAuth2
+      const oauth2Client = new google.auth.OAuth2(
+        credentials.web.client_id,
+        credentials.web.client_secret,
+        'urn:ietf:wg:oauth:2.0:oob' // Para aplicações desktop
+      );
+
+      // Para usar OAuth, você precisará fazer o fluxo de autorização
+      // Por enquanto, vamos usar uma abordagem simplificada
+      console.log('📋 Credenciais OAuth carregadas:');
+      console.log(`   Client ID: ${credentials.web.client_id}`);
+      console.log(`   Project ID: ${credentials.web.project_id}`);
 
       // Inicializar API de Indexing
       this.indexing = google.indexing({
         version: 'v3',
-        auth: this.auth,
+        auth: oauth2Client,
       });
 
-      console.log('✅ Google Indexing API inicializada com sucesso!');
+      console.log('✅ Google Indexing API configurada!');
+      console.log('⚠️  Para usar a API, você precisa autorizar o acesso primeiro.');
       return true;
     } catch (error) {
       console.error('❌ Erro ao inicializar Google Indexing API:', error.message);
@@ -55,9 +89,8 @@ class GoogleIndexingSubmitter {
 
   // Submeter todas as URLs
   async submitAllUrls() {
-    const urls = generateAllUrls();
     const results = [];
-    
+
     console.log(`🚀 Iniciando submissão de ${urls.length} URLs...`);
     console.log('');
 

@@ -11,7 +11,8 @@
     "deploy": "npm run build && echo 'Build completo! Pasta dist/ pronta para deploy.'",
     "sitemap": "node scripts/generate-sitemap.js",
     "index-google": "node scripts/submit-to-google.js",
-    "list-urls": "node scripts/generate-urls.js"
+    "list-urls": "node scripts/generate-urls.js",
+    "check-urls": "node scripts/check-indexing.js"
   },
   "dependencies": {
     "clsx": "^2.0.0",

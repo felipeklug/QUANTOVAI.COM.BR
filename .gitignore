@@ -37,3 +37,7 @@ dist/
 
 # Vercel
 .vercel
+
+# Google API Credentials
+google-service-account.json
+client_secret_*.json
