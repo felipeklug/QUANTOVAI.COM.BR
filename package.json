@@ -12,10 +12,13 @@
     "sitemap": "node scripts/generate-sitemap.js",
     "index-google": "node scripts/submit-to-google.js",
     "list-urls": "node scripts/generate-urls.js",
-    "check-urls": "node scripts/check-indexing.js"
+    "check-urls": "node scripts/check-indexing.js",
+    "encrypt-credentials": "node scripts/encrypt-credentials.js",
+    "decrypt-test": "node scripts/decrypt-credentials.js"
   },
   "dependencies": {
     "clsx": "^2.0.0",
+    "dotenv": "^17.2.2",
     "framer-motion": "^10.16.4",
     "googleapis": "^128.0.0",
     "lucide-react": "^0.263.1",

@@ -41,3 +41,14 @@ dist/
 # Google API Credentials
 google-service-account.json
 client_secret_*.json
+google-service-account.json.backup
+
+# Environment Variables
+.env
+.env.local
+.env.production
+.env.staging
+
+# Encrypted Credentials (keep encrypted file in repo, but not the key)
+# google-credentials.encrypted - Este arquivo PODE ser commitado (está criptografado)
+# .env - Este arquivo NUNCA deve ser commitado (contém a chave)

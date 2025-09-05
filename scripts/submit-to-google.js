@@ -1,10 +1,9 @@
 // Script para submeter URLs ao Google Indexing API
 import { google } from 'googleapis';
-import { readFileSync } from 'fs';
+import { loadGoogleCredentials, checkCredentialsAvailability } from './decrypt-credentials.js';
 
 // Configuração da API
 const SCOPES = ['https://www.googleapis.com/auth/indexing'];
-const CREDENTIALS_FILE = './google-service-account.json';
 
 // URLs do QuantoVai
 const SITE_URL = 'https://quantovai.com.br';
@@ -38,8 +37,13 @@ class GoogleIndexingSubmitter {
   // Inicializar autenticação
   async initialize() {
     try {
-      // Ler credenciais OAuth
-      const credentials = JSON.parse(readFileSync(CREDENTIALS_FILE, 'utf8'));
+      // Verificar disponibilidade das credenciais
+      if (!checkCredentialsAvailability()) {
+        throw new Error('Credenciais criptografadas não disponíveis. Execute: npm run encrypt-credentials');
+      }
+
+      // Carregar credenciais descriptografadas
+      const credentials = loadGoogleCredentials();
 
       // Configurar OAuth2
       const oauth2Client = new google.auth.OAuth2(
@@ -48,11 +52,11 @@ class GoogleIndexingSubmitter {
         'urn:ietf:wg:oauth:2.0:oob' // Para aplicações desktop
       );
 
-      // Para usar OAuth, você precisará fazer o fluxo de autorização
-      // Por enquanto, vamos usar uma abordagem simplificada
-      console.log('📋 Credenciais OAuth carregadas:');
-      console.log(`   Client ID: ${credentials.web.client_id}`);
-      console.log(`   Project ID: ${credentials.web.project_id}`);
+      // Informações seguras (sem expor client_secret)
+      console.log('🔓 Credenciais descriptografadas com sucesso');
+      console.log(`📋 Client ID: ${credentials.web.client_id}`);
+      console.log(`📋 Project ID: ${credentials.web.project_id}`);
+      console.log(`🔒 Client Secret: [PROTEGIDO]`);
 
       // Inicializar API de Indexing
       this.indexing = google.indexing({
@@ -60,11 +64,12 @@ class GoogleIndexingSubmitter {
         auth: oauth2Client,
       });
 
-      console.log('✅ Google Indexing API configurada!');
+      console.log('✅ Google Indexing API configurada com credenciais criptografadas!');
       console.log('⚠️  Para usar a API, você precisa autorizar o acesso primeiro.');
       return true;
     } catch (error) {
       console.error('❌ Erro ao inicializar Google Indexing API:', error.message);
+      console.error('💡 Dica: Verifique se o arquivo .env contém GOOGLE_CREDENTIALS_KEY');
       return false;
     }
   }
