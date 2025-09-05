@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://quantovai.com.br/sitemap.xml
+
+# Páginas principais
+Allow: /
+Allow: /calculadoras
+Allow: /sobre
+Allow: /como-funciona
+
+# Calculadoras individuais
+Allow: /calculadora/*
+
+# Otimizações para crawlers
+Crawl-delay: 1
+
+# Google AdSense
+Allow: /pagead/
+Allow: /googleads/
