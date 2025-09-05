@@ -6,12 +6,12 @@ type Props = { id:string; className?:string; load?:boolean };
 export function AdSlot({ id, className="", load=false }:Props){
  useEffect(()=> {
  if(!load) return;
- // Example ad loading logic:
- // try {
- // (window.adsbygoogle = window.adsbygoogle || []).push({});
- // } catch (e) {
- // console.error("Ad loading failed for slot", id, e);
- // }
+ // Google AdSense loading logic
+ try {
+ (window.adsbygoogle = window.adsbygoogle || []).push({});
+ } catch (e) {
+ console.error("Ad loading failed for slot", id, e);
+ }
  }, [load]);
 
  return (
