@@ -10,6 +10,11 @@ Allow: /calculadoras
 Allow: /sobre
 Allow: /como-funciona
 
+# Páginas legais (importantes para AdSense)
+Allow: /politica-de-privacidade
+Allow: /termos-de-uso
+Allow: /contato
+
 # Calculadoras individuais
 Allow: /calculadora/*
 

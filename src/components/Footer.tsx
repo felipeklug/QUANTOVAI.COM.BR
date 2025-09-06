@@ -73,9 +73,9 @@ export const Footer: React.FC = () => {
  </h4>
  <div className="space-y-4 mb-6">
  {[
- { href: "#", label: "Termos de Uso" },
- { href: "#", label: "Política de Privacidade" },
- { href: "#", label: "Contato" }
+ { href: "/termos-de-uso", label: "Termos de Uso" },
+ { href: "/politica-de-privacidade", label: "Política de Privacidade" },
+ { href: "/contato", label: "Contato" }
  ].map(({ href, label }) => (
  <a key={label} href={href}
  className="flex items-center gap-3 text-neutral-300 hover:text-brand-200

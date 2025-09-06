@@ -7,6 +7,9 @@ import { HowItWorksPage } from './pages/HowItWorks';
 import { CalculatorsPage } from './pages/CalculatorsPage';
 import { SearchResultsPage } from './pages/SearchResults';
 import { NotFoundPage } from './pages/NotFound';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicy';
+import { TermsOfServicePage } from './pages/TermsOfService';
+import { ContactPage } from './pages/Contact';
 
 function App() {
  // Initialize theme hook
@@ -40,6 +43,15 @@ function App() {
  // A route for all calculators page
  if (path === '/calculadoras') {
  return <CalculatorsPage />;
+ }
+ if (path === '/politica-de-privacidade' || path === '/privacy-policy') {
+ return <PrivacyPolicyPage />;
+ }
+ if (path === '/termos-de-uso' || path === '/terms-of-service') {
+ return <TermsOfServicePage />;
+ }
+ if (path === '/contato' || path === '/contact') {
+ return <ContactPage />;
  }
  return <NotFoundPage />;
  };

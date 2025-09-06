@@ -10,6 +10,9 @@ import { Search } from "lucide-react";
 import { Accordion } from "../components/Accordion";
 import { CategoryButton } from "../components/CategoryButton";
 import { SuggestionChip } from "../components/SuggestionChip";
+import { BlogSection } from "../components/BlogSection";
+import { NewsletterSignup } from "../components/NewsletterSignup";
+import { SEOHead, generatePageSEO } from "../components/SEOHead";
 import { calculatorConfigs } from "../data/calculatorConfigs";
 import { findBestMatch, hasMultipleMatches } from "../utils/searchUtils";
 
@@ -58,6 +61,7 @@ export function Home(){
 
  return (
  <div className="min-h-screen bg-surface" onClick={triggerAdLoad} onFocus={triggerAdLoad} onScroll={triggerAdLoad}>
+ <SEOHead seo={generatePageSEO('home')} />
  <Header />
  <main className="mx-auto max-w-6xl px-4">
  {/* Hero */}
@@ -198,6 +202,14 @@ export function Home(){
  </div>
  ))}
  </div>
+ </section>
+
+ {/* Blog Section */}
+ <BlogSection />
+
+ {/* Newsletter Signup */}
+ <section className="py-16 max-w-4xl mx-auto px-4">
+ <NewsletterSignup />
  </section>
 
  {/* FAQ */}

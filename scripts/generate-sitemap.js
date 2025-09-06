@@ -12,6 +12,11 @@ function generateSitemap() {
     `${SITE_URL}/sobre`,
     `${SITE_URL}/como-funciona`,
 
+    // Páginas legais (importantes para AdSense)
+    `${SITE_URL}/politica-de-privacidade`,
+    `${SITE_URL}/termos-de-uso`,
+    `${SITE_URL}/contato`,
+
     // Calculadoras individuais
     `${SITE_URL}/calculadora/floor-tiles`,
     `${SITE_URL}/calculadora/wallpaper`,
@@ -33,6 +38,8 @@ function generateSitemap() {
     if (url.includes('/calculadoras')) return '0.9';   // Página de calculadoras
     if (url.includes('/calculadora/')) return '0.8';   // Calculadoras individuais
     if (url.includes('/sobre') || url.includes('/como-funciona')) return '0.7';
+    if (url.includes('/contato')) return '0.6';        // Contato
+    if (url.includes('/politica-de-privacidade') || url.includes('/termos-de-uso')) return '0.5'; // Páginas legais
     return '0.6';
   };
 
