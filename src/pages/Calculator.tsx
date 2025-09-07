@@ -16,6 +16,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { calculatorConfigs, CalculatorField } from '../data/calculatorConfigs';
 import { NotFoundPage } from './NotFound';
 import { useAdLoader } from '../hooks/useAdLoader';
+import { CalculatorResultAd } from '../components/InFeedAd';
+import { StickyAd, useStickyAd } from '../components/StickyAd';
 
 interface CalculatorPageProps {
  calculatorId: string;
@@ -24,6 +26,7 @@ interface CalculatorPageProps {
 export const CalculatorPage: React.FC<CalculatorPageProps> = ({ calculatorId }) => {
  const config = calculatorConfigs[calculatorId];
  const { adsVisible, triggerAdLoad } = useAdLoader();
+ const { shouldShow: shouldShowStickyAd } = useStickyAd();
 
  // Early return if config is not found
  if (!config) {
@@ -218,6 +221,12 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ calculatorId }) 
  </div>
  ))}
  </div>
+
+ {/* Anúncio após resultado */}
+ <CalculatorResultAd
+ id={`calc-result-ad-${calculatorId}`}
+ load={adsVisible}
+ />
  <div className="mt-6 space-y-3">
  {/* Botão principal com animação chamativa */}
  <motion.div
@@ -338,7 +347,13 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ calculatorId }) 
 
  <Toast message={toast.message} type={toast.type} isVisible={toast.visible} onClose={() => setToast(p => ({ ...p, visible: false }))} />
  <Footer />
- <AdSlot type="anchor-bottom" isVisible={adsVisible} />
+
+ {/* Sticky Ad para calculadoras */}
+ <StickyAd
+ position="bottom"
+ load={shouldShowStickyAd && adsVisible}
+ />
+
  <div className="lg:hidden h-24" />
  </div>
  );

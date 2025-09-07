@@ -12,6 +12,8 @@ import { CategoryButton } from "../components/CategoryButton";
 import { SuggestionChip } from "../components/SuggestionChip";
 import { BlogSection } from "../components/BlogSection";
 import { NewsletterSignup } from "../components/NewsletterSignup";
+import { StickyAd, useStickyAd } from "../components/StickyAd";
+import { InFeedAd, BlogSectionAd } from "../components/InFeedAd";
 import { SEOHead, generatePageSEO } from "../components/SEOHead";
 import { calculatorConfigs } from "../data/calculatorConfigs";
 import { findBestMatch, hasMultipleMatches } from "../utils/searchUtils";
@@ -20,6 +22,7 @@ const POPULAR_CALCS_IDS = ['roof-pitch', 'wallpaper', 'floor-tiles', 'paint', 'm
 
 export function Home(){
  const { adsVisible, triggerAdLoad } = useAdLoader();
+ const { shouldShow: shouldShowStickyAd } = useStickyAd();
  const { getGradientBackground } = useGradientBorder();
 
  const [searchQuery, setSearchQuery] = useState("");
@@ -144,7 +147,13 @@ export function Home(){
  </div>
  </section>
  
- <AdSlot id="home-ad-1" className="my-8" load={adsVisible} />
+ {/* Anúncio estratégico após categorias */}
+ <AdSlot
+ id="home-ad-1"
+ className="my-8"
+ load={adsVisible}
+ format="auto"
+ />
 
  {/* Main Grid */}
  <section id="calculadoras" className="py-8">
@@ -158,14 +167,25 @@ export function Home(){
  </div>
 
  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
- {popularCalculators.map((config) => (
+ {popularCalculators.map((config, index) => (
+ <React.Fragment key={config.id}>
  <ModernCard
- key={config.id}
  href={`/calculator/${config.id}`}
  title={config.title}
  desc={config.description}
  Icon={config.icon}
  />
+ {/* Anúncio in-feed após 3ª calculadora */}
+ {index === 2 && (
+ <div className="md:col-span-2 lg:col-span-3">
+ <InFeedAd
+ id="home-infeed-1"
+ load={adsVisible}
+ title="Materiais Recomendados"
+ />
+ </div>
+ )}
+ </React.Fragment>
  ))}
  </div>
 
@@ -205,7 +225,14 @@ export function Home(){
  </section>
 
  {/* Blog Section */}
+ <div className="grid lg:grid-cols-4 gap-8">
+ <div className="lg:col-span-3">
  <BlogSection />
+ </div>
+ <div className="lg:col-span-1">
+ <BlogSectionAd id="blog-sidebar-ad" load={adsVisible} />
+ </div>
+ </div>
 
  {/* Newsletter Signup */}
  <section className="py-16 max-w-4xl mx-auto px-4">
@@ -254,9 +281,21 @@ export function Home(){
  </div>
  </section>
  
- <AdSlot id="home-ad-2" className="my-10" load={adsVisible} />
+ {/* Anúncio final - alta conversão */}
+ <AdSlot
+ id="home-ad-2"
+ className="my-10"
+ load={adsVisible}
+ format="rectangle"
+ />
  </main>
  <Footer />
+
+ {/* Sticky Ad - aparece após scroll */}
+ <StickyAd
+ position="bottom"
+ load={shouldShowStickyAd && adsVisible}
+ />
  </div>
  );
 }
